@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux"
+import { removeNote } from "../redux/actions/notasAction"
 import { Nota } from "../type"
 
 interface Props {
@@ -5,11 +7,14 @@ interface Props {
 }
 
 export const NoteItem = ({ note }: Props) => {
+    const dispatch = useDispatch()
+
+    const handleDelete = () => dispatch(removeNote(note))
 
     return (
         <div>
             <p>{note.text}</p>
-            <button>delete</button>
+            <button onClick={handleDelete}>delete</button>
         </div>
     )
 }

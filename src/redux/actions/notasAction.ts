@@ -6,3 +6,10 @@ export const createNewNote = (note: Nota) => {
         payload: note
     }
 }
+
+export const removeNote = (note: Nota) => {
+    return {
+        type: 'DELETE-NEW-NOTE',
+        payload: note
+    }
+}
