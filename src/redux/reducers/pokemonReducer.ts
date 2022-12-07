@@ -1,12 +1,14 @@
+import { PokemonData } from "../../type"
+
 interface Reducer {
     initialState: {
         loading: boolean
-        pokemon: null
+        pokemon: null | PokemonData
         error: null
     }
     actions: {
         type: 'FETCH-POKEMON' | 'FETCH-POKEMON-SUCCESS' | 'FETCH-POKEMON-ERROR'
-        payload?: any
+        payload?: PokemonData | String
     }
 }
 

@@ -1,10 +1,17 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPokemon } from "../redux/actions/pokemonAction"
+import { PokemonData } from "../type"
+
+interface PokemonResponse {
+    loading: boolean
+    pokemon: PokemonData
+    error: null | string
+}
 
 export const Pokemon = () => {
     const dispatch = useDispatch()
-    const pokemon = useSelector<any, any>(state => state.pokemon)
+    const pokemon = useSelector<{ pokemon: PokemonResponse }, PokemonResponse>(state => state.pokemon)
     const [inputValue, setInputValue] = useState<String>("")
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setInputValue(event.target.value)
@@ -17,10 +24,10 @@ export const Pokemon = () => {
 
             {pokemon.pokemon && <div>
                 <h1>{pokemon.pokemon.name}</h1>
-                <img height={300} src={pokemon.pokemon.sprites.front_default} alt="Imagen Pokemon" />
+                <img height={300} src={pokemon.pokemon.front_default} alt="Imagen Pokemon" />
             </div>}
             {pokemon.loading && "Cargando..."}
-            {pokemon.error && "Hay un error"}
+            {pokemon.error}
         </div>
     )
 }
